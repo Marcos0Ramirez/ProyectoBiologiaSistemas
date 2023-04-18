@@ -7,7 +7,7 @@
 
 Poner lo leido y referencia
 
-
+14 y 18 de abril
 ## Simulacion de la evolucion 
 Yo voy a hacer un simulador de la evolucion sintetico, en el que consista en tomar todas las variables bioticas y abioticas posibles y sus combinaciones.
   Los demas apuntes sobre como se va a realizar las combinaciones se tienen en una hoja de libreta en la casa. **Recordar ver esa hoja**
@@ -42,6 +42,7 @@ Tendremos un sistema sintetico que solo sera basado en una bacteria X
    4. Nivel de expresion
    5. Funcion (fundamental o no fundamental)
    6. Influencia de metabolitos
+   7. Epigenetica
 
   - Actividad del investigado
     1. Caza
@@ -64,8 +65,13 @@ Tendremos un sistema sintetico que solo sera basado en una bacteria X
     5. relacion gen mutacion
     6. relacion no gen a mutacion
 
-tasa de mutacion = Tm
-Df/Dt = 
-
+El codigo de python se basara en condiciones aleatorias o funciones aleatorias que estaran condicionadas a las probabilidades que se generen tambien de forma aleatoria. Por lo que cada uno de los procesos se validara por si mismo en la que se vaya sumando, se tomada otras condiciones para determinar donde y cuantos nucleotidos se va a cambiar, eliminar o duplicar.
+1. Habra regiones que se consideraran genes y habra otras que no lo sean.
+2. Considerara adicion de genes.
+3. Considerara donde son las regiones promotoras, regiones reguladoras, accion de TF.
+4. Habra regiones que se modifiquen mas que otras.
+5. Habra regiones que sean mas conservadas o seleccion neutra.
+6. Habra lugares que mutaran hasta fijarse.
+7. Habra mutaciones que no se fijaran.
 
 **LEER** https://www.cell.com/fulltext/S0092-8674%2812%2900776-3
