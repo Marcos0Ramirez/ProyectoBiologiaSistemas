@@ -34,6 +34,21 @@ Tendremos un sistema sintetico que solo sera basado en una bacteria X
     8. virus
     9. otros patogenos
 
+
+   - Mecanismos moleculares
+   1. Reparacion
+   2. Replicacion
+   3. Duplicacion
+   4. Nivel de expresion
+   5. Funcion (fundamental o no fundamental)
+   6. Influencia de metabolitos
+
+  - Actividad del investigado
+    1. Caza
+    2. Infeccion
+    3. Depredacion
+    4. Muerte
+
   - Percibira 
     1. El crecimiento
     2. tasa de expresion
