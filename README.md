@@ -94,9 +94,12 @@ h
 
 h
 
-h
+## Resultados {#resultados}
 
-h
+Aquí se presentan los resultados del estudio.
+
+Para más detalles, ver [Resultados](#resultados).
+
 
 h
 
