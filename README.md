@@ -78,7 +78,7 @@ El codigo de python se basara en condiciones aleatorias o funciones aleatorias q
 
 ### 22/04/2023
 Se encontro un articulo que habla sobre algritmos para al probabilidad de mutaciones, al parecer desde antes de 1995 ya se venia trabajando con ello.
-Ref ![1](https://doi.org/10.1016/0895-7177(95)00035-Z)
+Ref [1](https://doi.org/10.1016/0895-7177(95)00035-Z)
 
 Referencias
 1. Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11.
