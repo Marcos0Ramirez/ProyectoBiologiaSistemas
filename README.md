@@ -75,3 +75,7 @@ El codigo de python se basara en condiciones aleatorias o funciones aleatorias q
 7. Habra mutaciones que no se fijaran.
 
 **LEER** https://www.cell.com/fulltext/S0092-8674%2812%2900776-3
+
+### 22/04/2023
+> Se encontro un articulo que habla sobre algritmos para al probabilidad de mutaciones, al parecer desde antes de 1995 ya se venia trabajando con ello.
+> Hola
