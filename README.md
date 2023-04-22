@@ -98,7 +98,7 @@ h
 
 Aquí se presentan los resultados del estudio.
 
-Para más detalles, ver [Resultados](#resultados).
+
 
 
 h
@@ -119,3 +119,4 @@ h
 
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
+Para más detalles, ver [Resultados](#resultados).
