@@ -82,7 +82,7 @@ Este [link](https://docs.google.com/document/d/1YDm086PFRrov0miDkIycMEBP3UxLSZK-
 
 Codigo python
 
----
+***
 # Libro en donde se va a poner todo el codigo sobre el simulador de la evolucion
 # Contamos con PURINAS = ADENINA (A) y GUANINA (G)
 # Contamos con PIRIMIDINAS = CITOSINA (C) y [[TIMINA (T) y URACILO (U)]]
@@ -109,7 +109,7 @@ def Targetseq():
         seq += str(N)
         n += 1
     return seq
----
+***
 
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
