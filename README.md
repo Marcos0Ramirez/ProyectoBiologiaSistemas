@@ -80,5 +80,35 @@ El codigo de python se basara en condiciones aleatorias o funciones aleatorias q
 A partir de aqui, la informacion que se coloque aqui, es para registrar cada una de las modificaciones y logica dentro del codigo python
 Este [link](https://docs.google.com/document/d/1YDm086PFRrov0miDkIycMEBP3UxLSZK-4tMIfxQiSrc/edit?usp=sharing) sera para un Google docs que llevara toda la informacion consultada, el desenlace de las ideas, asi como diagramas o bocetos que se hagan en una libreta o hoja de papel.
 
+Codigo python
+´´´
+# Libro en donde se va a poner todo el codigo sobre el simulador de la evolucion
+# Contamos con PURINAS = ADENINA (A) y GUANINA (G)
+# Contamos con PIRIMIDINAS = CITOSINA (C) y [[TIMINA (T) y URACILO (U)]]
+# Trabajo de codigo 10/05/2023
+import random
+
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    x = int(input("Coloque el tamaño de su secuencia"))
+    gen1 = str(input("Coloque el nombre del gen 1: "))
+    tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: ")
+    gen2 = str(input("Coloque el nombre del gen 2: "))
+    tasagen2 = float(input("Coloque la tasa de mutacion del gen 2: ")
+    gen3 = str(input("Coloque el nombre del gen 3: "))
+    tasagen3 = float(input("Coloque la tasa de mutacion del gen 3: ")
+# Ahora lo que haremos es que tomaremos estos datos y de forma aleatoria tomaremoa las posiciones y la longitu del gen, tambnien debemo de tomar un tamño minimo de la secuencia, tambien lo que vamos a hacer es corregir los codontes en cuanto al tamaño, asi como otra parte imprimiremos los datos.
+    info_inicial = {"tamaño de la secuencia objetivo": 1, "gen 1" : gen1, "tasa de mutacion 1": tasagen1, "gen 2" : gen2, "tasa de mutacion 2": tasagen2, "gen 3" : gen3, "tasa de mutacion 3": tasagen3}
+    seq = ""
+    NucleoATGC = "ATGC"
+    n = 0
+    while n <= x:
+        alea = random.randint(0,3)
+        N = NucleoATGC[alea]
+        seq += str(N)
+        n += 1
+    return seq
+´´´
+
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
