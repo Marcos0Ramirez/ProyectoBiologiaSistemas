@@ -508,6 +508,103 @@ def Targetseq():
                 print("Ya es entero", x)
 Targetseq()
 ~~~
+Avance final de la logica, aunque falta corregir aun, sobre todo la parte de abajo
+~~~
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    Datos = {}
+    while True:
+        x = input("Coloque el tamaño de su secuencia")
+        if x == "":
+            print("Si quieres salir, solo escribe (*) y si quieres continuar, escribe un tamaño")
+        elif x == "*":
+            print("Has salido del programa")
+            return
+        else:
+            x = float(x)
+            log = x % 1 != 0
+            if log == True:
+                print("No es entero", x, "Numeros enteros son 1, 2, 3 hasta 1000 y mas")
+            else:
+                if x < 201:
+                    x = 201
+                    print(x)
+                    break
+                else:
+                    y = x/3 == int(x/3) #Establece si el valor que se divide es entero, si no lo es dara False
+                # Para saber si por el numero de genes da un numero entero para jugar con eso en la secuencia
+                # La logica es que al decir que no es un real
+                    if y == True:
+                        print(x)
+                        break
+                    else:
+                        debajo = x - 1
+                        arriba = x + 1
+                        while True:
+                            logicaMenor = debajo/3 == int(debajo/3)
+                            logicaMayor = arriba/3 == int(arriba/3)
+                            if logicaMenor == True:
+                                x = debajo
+                                print(x)
+                                break
+                            if logicaMayor == True:
+                                x = arriba
+                                print(x)
+                                break
+                            else:
+                                debajo = x - 1
+                                arriba = x + 1
+                        break
+                           
+                            
+#Ya solo falta darle detalles a lo de arriba y a corregir a lo de abajo
+
+# Para seguir preguntado, debiamos agregar otro while si en todo caso se debia repetir la pregunta gen1.
+    n = 0
+    while n >= 0 and n <=3:
+        while True:
+            gen = str(input("Coloque el nombre del gen 1: "))
+            if gen == "":
+                print("Si quieres salir, solo escribe solo asterisco (*) y si quieres continuar, escribe el nombre del gen")
+            elif gen == "*":
+                print("Has salido del programa")
+                return
+            else:
+                break
+        print(gen)
+# Aqui falta correogir, porque el * no se puede convertir a real, entonces de tener una entrada 
+# tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: ")), la dividimos
+# Para seguir preguntado, debiamos agregar otro while si en todo caso se debia repetir la pregunta tasagen1.
+        while True:
+            print("Coloque la tasa de mutacion del gen ", gen)
+            tasagen = input()
+            if tasagen == "":
+                print("Si quieres salir, solo escribe solo asterisco (*) y si quieres continuar, escribe la tasa que pertenezca [0,1]")
+            elif tasagen == "*":
+                print("Has salido del programa")
+                return
+            else:
+                if '/' in tasagen:
+                    numerador, denominador = tasagen.split('/')
+                    valor = float(numerador) / float(denominador)
+                    print(valor)
+                    log = valor >= 0 and valor <= 1
+                    if log == False:
+                        print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    else:
+                        print("Excelente, si es una tasa viable", valor)
+                        break
+                
+                else:
+                    tasagen = float(tasagen)
+                    log = tasagen >= 0 and tasagen <= 1
+                    if log == False:
+                        print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    else:
+                        print("Excelente, si es una tasa viable", tasagen)
+                        n += 1
+# Para hacer menos codigo, se decidira crear un diccionario y por tanto ir guardando los datos
+~~~
 
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
