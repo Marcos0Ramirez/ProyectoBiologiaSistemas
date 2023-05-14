@@ -166,5 +166,153 @@ def Targetseq():
 # Ahora que creamos la secuencia, vamos a proceder a dividir la secuencia en pequeñas partes
 ~~~
 
+Lo que necesitaba es hacer que el programa pueda seguir pidiendo informacion hasta que de la correcta
+~~~
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    while True:
+        x = float(input("Coloque el tamaño de su secuencia"))
+        log = x % 1 != 0
+        if log == True:
+            print("No es entero", x, "Numeros enteros son 1, 2, 3 hasta 1000 y mas")
+        else:
+            print("Ya es entero", x)
+            return x
+
+En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos
+Coloque el tamaño de su secuencia 0.258903485048302
+0.258903485048302
+No es entero 0.258903485048302 Numeros enteros son 1, 2, 3 hasta 1000 y mas
+Coloque el tamaño de su secuencia 0.174892789473927438
+0.17489278947392745
+No es entero 0.17489278947392745 Numeros enteros son 1, 2, 3 hasta 1000 y mas
+Coloque el tamaño de su secuencia 2.23895893454
+2.23895893454
+No es entero 2.23895893454 Numeros enteros son 1, 2, 3 hasta 1000 y mas
+Coloque el tamaño de su secuencia 50000000
+50000000.0
+Ya es entero 50000000.0
+50000000.0
+
+
+En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos
+Coloque el tamaño de su secuencia 1
+1.0
+Ya es entero 1.0
+1.0
+~~~
+Ahora para que nos de numeros entre 0 y 1
+~~~
+def tasa():
+    while True:
+        tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: "))
+        log = tasagen1 >= 0 and tasagen1 <= 1
+        if log == False:
+            print("Uy pa, como que no le atinaste pa, intentalo de nuevo")
+        else:
+            print("Excelente si es una tasa viable")
+            return tasagen1
+            
+Coloque la tasa de mutacion del gen 1:  2
+Uy pa, como que no le atinaste pa, intentalo de nuevo
+Coloque la tasa de mutacion del gen 1:  3
+Uy pa, como que no le atinaste pa, intentalo de nuevo
+Coloque la tasa de mutacion del gen 1:  4
+Uy pa, como que no le atinaste pa, intentalo de nuevo
+Coloque la tasa de mutacion del gen 1:  5
+Uy pa, como que no le atinaste pa, intentalo de nuevo
+Coloque la tasa de mutacion del gen 1:  6
+Uy pa, como que no le atinaste pa, intentalo de nuevo
+Coloque la tasa de mutacion del gen 1:  7
+Uy pa, como que no le atinaste pa, intentalo de nuevo
+Coloque la tasa de mutacion del gen 1:  1
+Excelente si es una tasa viable
+1.0
+~~~
+
+De esta manera no funciona bien
+~~~
+# Ahora si lo intentamos en conjunto
+def funcion():
+    while True:
+        x = float(input("Coloque el tamaño de su secuencia"))
+        log = x % 1 != 0
+        if log == True:
+            print("No es entero", x, "Numeros enteros son 1, 2, 3 hasta 1000 y mas")
+        else:
+            print("Ya es entero", x)
+            return x
+    while True:
+        tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: "))
+        log = tasagen1 >= 0 and tasagen1 <= 1
+        if log == False:
+            print("Uy pa, como que no le atinaste pa, intentalo de nuevo")
+        else:
+            print("Excelente si es una tasa viable")
+            return tasagen1
+            
+funcion()
+Coloque el tamaño de su secuencia 2
+Ya es entero 2.0
+2.0         
+~~~
+Dio el mismo resultado
+~~~
+# Ahora si lo intentamos en conjunto
+def funcion():
+    while True:
+        x = float(input("Coloque el tamaño de su secuencia"))
+        log = x % 1 != 0
+        if log == True:
+            print("No es entero", x, "Numeros enteros son 1, 2, 3 hasta 1000 y mas")
+        else:
+            print("Ya es entero", x)
+            return x
+        tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: "))
+        log = tasagen1 >= 0 and tasagen1 <= 1
+        if log == False:
+            print("Uy pa, como que no le atinaste pa, intentalo de nuevo")
+        else:
+            print("Excelente si es una tasa viable")
+            return tasagen1
+
+funcion()    
+Coloque el tamaño de su secuencia 19
+Ya es entero 19.0
+19.0
+~~~
+Ahora solo se modifico el return, para ponerlo en el ultimo condicional
+~~~
+# Ahora si lo intentamos en conjunto
+def funcion():
+    while True:
+        x = float(input("Coloque el tamaño de su secuencia"))
+        log = x % 1 != 0
+        if log == True:
+            print("No es entero", x, "Numeros enteros son 1, 2, 3 hasta 1000 y mas")
+        else:
+            print("Ya es entero", x)
+        tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: "))
+        log = tasagen1 >= 0 and tasagen1 <= 1
+        if log == False:
+            print("Uy pa, como que no le atinaste pa, intentalo de nuevo")
+        else:
+            print("Excelente si es una tasa viable")
+            return x, tasagen1
+            
+funcion()
+Coloque el tamaño de su secuencia 12
+Ya es entero 12.0
+Coloque la tasa de mutacion del gen 1:  2
+Uy pa, como que no le atinaste pa, intentalo de nuevo
+Coloque el tamaño de su secuencia 3
+Ya es entero 3.0
+Coloque la tasa de mutacion del gen 1:  0.5
+Excelente si es una tasa viable
+(3.0, 0.5)
+~~~
+
+
+Ahora toca continuar con generarlo en un solo while 
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
