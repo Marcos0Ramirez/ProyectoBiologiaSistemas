@@ -201,6 +201,7 @@ Coloque el tamaño de su secuencia 1
 Ya es entero 1.0
 1.0
 ~~~
+13/05/2023
 Ahora para que nos de numeros entre 0 y 1
 ~~~
 def tasa():
@@ -484,6 +485,28 @@ def Targetseq():
         n += 1
     return seq
 # Ahora que creamos la secuencia, vamos a proceder a dividir la secuencia en pequeñas partes
+~~~
+14/05/2023
+Hice una modificacion para tener salida
+~~~
+# Ahora se quiere comprobar que tambien se va a regresar si no se agrega nada de informacion
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    while True:
+        x = input("Coloque el tamaño de su secuencia")
+        if x == "":
+            print("Si quieres salir, solo escribe 'exit' y si quieres continuar, escribe un tamaño")
+        elif x == "exit":
+            print("Has salido del programa")
+            return
+        else:
+            x = float(x)
+            log = x % 1 != 0
+            if log == True:
+                print("No es entero", x, "Numeros enteros son 1, 2, 3 hasta 1000 y mas")
+            else:
+                print("Ya es entero", x)
+Targetseq()
 ~~~
 
 # Referencias
