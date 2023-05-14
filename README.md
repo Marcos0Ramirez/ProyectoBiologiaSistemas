@@ -312,8 +312,179 @@ Coloque la tasa de mutacion del gen 1:  0.5
 Excelente si es una tasa viable
 (3.0, 0.5)
 ~~~
+Ahora que junte todos los valores que se requieren, al terminar la funcion con return termina, y con yield, solo se puede si es iterable. 
+Por tanto se buscara que sea por el otro lado, que continue dentro del ultimo else
+~~~
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    while True:
+        x = float(input("Coloque el tamaño de su secuencia"))
+        log = x % 1 != 0
+        if log == True:
+            print("No es entero", x, "Numeros enteros son 1, 2, 3 hasta 1000 y mas")
+        else:
+            print("Ya es entero", x)
+
+        gen1 = str(input("Coloque el nombre del gen 1: "))
+        tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: "))
+        log = tasagen1 >= 0 and tasagen1 <= 1
+        if log == False:
+            print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+        else:
+            print("Excelente, si es una tasa viable")
+            
+        gen2 = str(input("Coloque el nombre del gen 2: "))
+        tasagen2 = float(input("Coloque la tasa de mutacion del gen 2: "))
+        log = tasagen2 >= 0 and tasagen2 <= 1
+        if log == False:
+            print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+        else:
+            print("Excelente, si es una tasa viable")
+    
+        gen3 = str(input("Coloque el nombre del gen 3: "))
+        tasagen3 = float(input("Coloque la tasa de mutacion del gen 3: "))
+        log = tasagen3 >= 0 and tasagen3 <= 1
+        if log == False:
+            print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+        else:
+            print("Excelente, si es una tasa viable")
+            yield x, gen1, tasagen1, gen2, tasagen2, gen3, tasagen3
+    print("x: ",x, "gen1", gen1, "tasagen1", tasagen1, "gen2", gen2, "tasagen2", tasagen2, "gen3", gen3, "tasagen3", tasagen3)
+~~~
+Ya que ahora podemos terminar una funcion y llamar a otra ahora solo queda condicionar mas, para el tamaño de la secuencia, asi como de otros factores
+~~~
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    while True:
+        x = float(input("Coloque el tamaño de su secuencia"))
+        log = x % 1 != 0
+        if log == True:
+            print("No es entero", x, "Numeros enteros son 1, 2, 3 hasta 1000 y mas")
+        else:
+            print("Ya es entero", x)
+
+        gen1 = str(input("Coloque el nombre del gen 1: "))
+        tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: "))
+        log = tasagen1 >= 0 and tasagen1 <= 1
+        if log == False:
+            print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+        else:
+            print("Excelente, si es una tasa viable")
+            
+        gen2 = str(input("Coloque el nombre del gen 2: "))
+        tasagen2 = float(input("Coloque la tasa de mutacion del gen 2: "))
+        log = tasagen2 >= 0 and tasagen2 <= 1
+        if log == False:
+            print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+        else:
+            print("Excelente, si es una tasa viable")
+    
+        gen3 = str(input("Coloque el nombre del gen 3: "))
+        tasagen3 = float(input("Coloque la tasa de mutacion del gen 3: "))
+        log = tasagen3 >= 0 and tasagen3 <= 1
+        if log == False:
+            print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+        else:
+            print("Excelente, si es una tasa viable")
+            return x, gen1, tasagen1, gen2, tasagen2, gen3, tasagen3
+
+#Una vez termina la funcion, hacemos otra funcion para que continue el proceso
+
+def TargetSigue(x, gen1, tasagen1, gen2, tasagen2, gen3, tasagen3):
+    print(x, gen1, tasagen1, gen2, tasagen2, gen3, tasagen3)
+
+# Procedemos a que se guarden los valores y que actuen ambas funciones en una sola corrida    
+x, gen1, tasagen1, gen2, tasagen2, gen3, tasagen3 = Targetseq()
+TargetSigue(x, gen1, tasagen1, gen2, tasagen2, gen3, tasagen3)
+~~~
+# Codigo original, no terminado pero avanzado
+~~~
+# Trabajo de codigo 13/05/2023
 
 
+# Libro en donde se va a poner todo el codigo sobre el simulador de la evolucion
+# Contamos con PURINAS = ADENINA (A) y GUANINA (G)
+# Contamos con PIRIMIDINAS = CITOSINA (C) y [[TIMINA (T) y URACILO (U)]]
+# Las tasas de mutacion seran colocadas en este rango [0,1]
+# Las secuencias van a tener un tamaño minimo de 201
+    # La razon de estas 200, es que estamos considerando un genoma con minimo 3 genes, por lo que si fuese un gen, podria considerarse hasta tamaño de 50bp, pero no es el caso
+import random
+
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    while True:
+        x = float(input("Coloque el tamaño de su secuencia"))
+        log = x % 1 != 0
+        if log == True:
+            print("No es entero", x, "Numeros enteros son 1, 2, 3 hasta 1000 y mas")
+        else:
+            print("Ya es entero", x)
+
+        gen1 = str(input("Coloque el nombre del gen 1: "))
+        tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: "))
+        log = tasagen1 >= 0 and tasagen1 <= 1
+        if log == False:
+            print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+        else:
+            print("Excelente, si es una tasa viable")
+            
+        gen2 = str(input("Coloque el nombre del gen 2: "))
+        tasagen2 = float(input("Coloque la tasa de mutacion del gen 2: "))
+        log = tasagen2 >= 0 and tasagen2 <= 1
+        if log == False:
+            print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+        else:
+            print("Excelente, si es una tasa viable")
+    
+        gen3 = str(input("Coloque el nombre del gen 3: "))
+        tasagen3 = float(input("Coloque la tasa de mutacion del gen 3: "))
+        log = tasagen3 >= 0 and tasagen3 <= 1
+        if log == False:
+            print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+        else:
+            print("Excelente, si es una tasa viable")
+            return x, [gen1, tasagen1], [gen2, tasagen2], [gen3, tasagen3]
+    
+
+        
+# Procedemos a tomar la secuencia, la cual sera corregida de tamaño, respetanto la cantidad de aminoacidos por triplete de bases
+    if x < 201:
+        x = 201
+        aa = x/3
+        long = "Corregimos a una longitud del genoma: " + x + "\n" + "Con una cantidad de aminoacidos: " + aa
+        print(long)
+    else:
+        # Debemos de buscar la manera de que el programa puede utilizar una manera de que el tamaño es funcional y si no para despues corregir
+         if (x % 3) == 0: #(sin residuos)
+                aa = x/3
+                long = "Con una longitud del genoma: " + x + "\n" + "y una cantidad de aminoacidos: " + aa
+                print(long)
+
+    info_inicial = {"tamaño de la secuencia objetivo": x, "gen 1" : gen1, "tasa de mutacion 1": tasagen1, "gen 2" : gen2, "tasa de mutacion 2": tasagen2, "gen 3" : gen3, "tasa de mutacion 3": tasagen3}
+
+# Ahora definimos el tamaño de cada uno de los genes, donde cada gen tendra un tamaño  puede ser igual o similar, dependera de la aleatoriedad
+# Para ello condicionaremos a que no se sobrelapen, por lo que debera de haber una manera de colocar numero aleatorios, pero que las secuencias no se sobrelapen
+# Tambien por fines practicos, el tamaño de los genes tendran un tamaño proporcional al tamaño del genoma
+    sizes = "" # Definimos donde vamos a guardar los numeros aleatorios
+    # Sin antes vamos a definir una funcion en donde se definira un tamaño minimo y maximo de las secuencias que sea entre un 10% a 35
+    while kopf == True:
+        n = 
+        while :
+            num = random.randint(
+            sizes += 
+            n += 1
+    
+    seq = ""
+    NucleoATGC = "ATGC"
+    n = 0
+    while n <= x:
+        alea = random.randint(0,3)
+        N = NucleoATGC[alea]
+        seq += str(N)
+        n += 1
+    return seq
+# Ahora que creamos la secuencia, vamos a proceder a dividir la secuencia en pequeñas partes
+~~~
 
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
