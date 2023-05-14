@@ -254,8 +254,9 @@ def funcion():
 funcion()
 Coloque el tamaño de su secuencia 2
 Ya es entero 2.0
-2.0         
+2.0   
 ~~~
+Ahora toca continuar con generarlo en un solo while 
 Dio el mismo resultado
 ~~~
 # Ahora si lo intentamos en conjunto
@@ -313,6 +314,6 @@ Excelente si es una tasa viable
 ~~~
 
 
-Ahora toca continuar con generarlo en un solo while 
+
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
