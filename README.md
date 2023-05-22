@@ -743,7 +743,120 @@ while True:
     break # Una vez acabamos, cerramos el bucle y continuamos a evaluar las variables guardadas
 print("numero final ", x) #Al finall si te imprime el valor entero x que pones 
 ~~~
+Solo falta aplicarlo en las demas partes del codigo
 
+~~~
+# Modificación de código, Fecha: 21/05/2023
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    Datos = {}
+    while True:
+        x = input("Coloque el tamaño de su secuencia")
+        if x.isdigit():
+            print("Es un numero entero", x)
+            x = int(x)
+
+        elif x.replace(".", "").isnumeric(): 
+            print("es decimal ",x,"por favor coloque un numero entero >201)
+                continue
+        elif x == "*":
+            print("Has salido del programa")
+            return        
+        else:
+            print("Si quieres salir, solo escribe (*) y si quieres continuar, debe poner un numero entero entre 201 a mas")
+            print("Debe poner un numero entero entre 201 a mas")
+            continue
+                  
+        if x < 201:
+            x = 201
+            print(x)
+            break
+        else:
+            y = x/3 == int(x/3) #Establece si el valor que se divide es entero, si no lo es dara False
+            # Para saber si por el numero de genes da un numero entero para jugar con eso en la secuencia
+            # La logica es que al decir que no es un real
+            if y == True:
+                print(x)
+                break
+            else:
+                debajo = x - 1
+                arriba = x + 1
+                while True:
+                    logicaMenor = debajo/3 == int(debajo/3)
+                    logicaMayor = arriba/3 == int(arriba/3)
+                    if logicaMenor == True:
+                        x = debajo
+                        print(x)
+                        break
+                    if logicaMayor == True:
+                        x = arriba
+                        print(x)
+                        break
+                    else:
+                        debajo = x - 1
+                        arriba = x + 1
+                break
+                           
+                            
+#Ya solo falta darle detalles a lo de arriba y a corregir a lo de abajo
+
+# Para seguir preguntado, debiamos agregar otro while si en todo caso se debia repetir la pregunta gen1.
+    n = 1
+    while n >= 1 and n <=3:
+        while True:
+            gen = str(input("Coloque el nombre del gen: "))
+            if gen == "":
+                print("Si quieres salir, solo escribe solo asterisco (*) y si quieres continuar, escribe el nombre del gen")
+                break
+            elif gen == "*":
+                print("Has salido del programa")
+                return
+            else:
+                break
+        print(gen)
+# Aqui falta correogir, porque el * no se puede convertir a real, entonces de tener una entrada 
+# tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: ")), la dividimos
+# Para seguir preguntado, debiamos agregar otro while si en todo caso se debia repetir la pregunta tasagen1.
+        while True:
+            print("Coloque la tasa de mutacion del gen ", gen)
+            tasagen = input()
+            if tasagen == "" or tasagen == str(tasagen):
+                print("Si quieres salir, solo escribe solo asterisco (*) y si quieres continuar, escribe la tasa que pertenezca [0,1]")
+                break
+            elif tasagen == "*":
+                print("Has salido del programa")
+                return
+            else:
+                if '/' in tasagen:
+                    numerador, denominador = tasagen.split('/')
+                    valor = float(numerador) / float(denominador)
+                    print(valor)
+                    log = valor >= 0 and valor <= 1
+                    if log == False:
+                        print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    else:
+                        print("Excelente, si es una tasa viable", valor)
+                        n += 1
+                        b
+                        
+                        reak
+                
+                else:
+                    tasagen = float(tasagen)
+                    log = tasagen >= 0 and tasagen <= 1
+                    if log == False:
+                        print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    else:
+                        print("Excelente, si es una tasa viable", tasagen)
+                        n += 1
+                        break
+    return Datos
+# Para hacer menos codigo, se decidira crear un diccionario y por tanto ir guardando los datos
+Targetseq()
+
+
+#Ahora que ya tenemos el formato de todos los genes y nombres asi como de tasas, buscaremos imprimir todos esos datos y manipularlos
+~~~
 
 
 
