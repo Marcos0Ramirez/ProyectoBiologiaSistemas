@@ -974,7 +974,24 @@ def Targetseq():
     return Datos
 Targetseq()
 ~~~
+Con esto sabemos que si hay algun valor que se guardo en el diccionario
 
+~~~
+# Diccionario de ejemplo
+diccionario = {'clave1': 'valor1', 'clave2': 'valor2', 'clave3': 'valor3'}
+
+# Pedir el input al usuario
+input_usuario = input("Ingrese un valor: ")
+
+# Verificar si el valor está en el diccionario
+for clave, valor in diccionario.items():
+    if valor == input_usuario:
+        print(f"El valor {input_usuario} está asociado a la clave {clave}")
+        break
+else:
+    print("El valor no está en el diccionario")
+
+~~~
 
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
