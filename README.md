@@ -710,6 +710,19 @@ def Targetseq():
 # Para hacer menos codigo, se decidira crear un diccionario y por tanto ir guardando los datos
 Targetseq()
 ~~~
+Ahora con este codigo nos va a ayudar mucho a la parte de diferenciar si es un digito, decimal o cadena, para aplicarla en el codigo
+~~~
+x = input("pon algo ")
+if x.isdigit():
+    print("Es un numero entero", x)
+elif x.replace(".", "").isnumeric(): 
+    print("es decimal ",x)
+else:
+    print(x)
+~~~
+
+
+
 
 
 # Referencias
