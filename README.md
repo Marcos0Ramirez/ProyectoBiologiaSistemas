@@ -721,6 +721,28 @@ else:
     print(x)
 ~~~
 
+Hasta este punto se busco la manera de que el programa siguiera funcionando una vez que se terminara de evaluar.
+~~~
+# Ahora simulamos el inicio
+while True:
+    x = input("pon algo ") #Pretendemos que coloque un valor
+    if x.isdigit(): #Evalua que es un entero, por que al ser correcto continua...
+        print("Es un numero entero", x) 
+        x = int(x) #Ahora que ya se sabe que es un valor entero, el input se convierte a un valor entero
+    elif x.replace(".", "").isnumeric(): # Si es un valor con decimal, pretende redondear el valor colocado
+        print("es decimal ",x)
+        print("Por favor coloca un numero entero") # Obligamos a que la persona ponga un numero que sea entero
+        continue
+    elif x=="*":
+        print("este es para salir") # SALITE
+    else:
+        print(x) # Hasta este punto el querer regresar hasta que se ponga un numero entero
+        continue
+    
+    print(x*2) # Aqui vemos como actua el numero fuera de los condionales
+    break # Una vez acabamos, cerramos el bucle y continuamos a evaluar las variables guardadas
+print("numero final ", x) #Al finall si te imprime el valor entero x que pones 
+~~~
 
 
 
