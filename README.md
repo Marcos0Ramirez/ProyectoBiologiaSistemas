@@ -857,7 +857,123 @@ Targetseq()
 
 #Ahora que ya tenemos el formato de todos los genes y nombres asi como de tasas, buscaremos imprimir todos esos datos y manipularlos
 ~~~
+Falta agregar depurar los datos cuando se agrega valores con un cero al inicio ej: 023,030 etc,
+Falta corregir para cuando meten valores repetidos, poner la condicion de que le falta corregir, porque ya agrego ese dato
+~~~
+# Modificación de código, Fecha: 22/05/2023
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    Datos = {}
+    while True:
+        x = input("Coloque el tamaño de su secuencia")
+        if x.isdigit():
+            print("Es un numero entero", x)
+            x = int(x)
 
+        elif x.replace(".", "").isnumeric(): 
+            print("es decimal ",x,"por favor coloque un numero entero >201")
+            continue
+        elif x == "*":
+            print("Has salido del programa")
+            return        
+        else:
+            print("Si quieres salir, solo escribe (*) y si quieres continuar, debe poner un numero entero entre 201 a mas")
+            print("Debe poner un numero entero entre 201 a mas")
+            continue
+                  
+        if x < 201:
+            x = 201
+            print(x)
+            break
+        else:
+            y = x/3 == int(x/3) #Establece si el valor que se divide es entero, si no lo es dara False
+            # Para saber si por el numero de genes da un numero entero para jugar con eso en la secuencia
+            # La logica es que al decir que no es un real
+            if y == True:
+                print(x)
+                break
+            else:
+                debajo = x - 1
+                arriba = x + 1
+                while True:
+                    logicaMenor = debajo/3 == int(debajo/3)
+                    logicaMayor = arriba/3 == int(arriba/3)
+                    if logicaMenor == True:
+                        x = debajo
+                        print(x)
+                        break
+                    if logicaMayor == True:
+                        x = arriba
+                        print(x)
+                        break
+                    else:
+                        debajo = x - 1
+                        arriba = x + 1
+                break
+                           
+                            
+#Ya solo falta darle detalles a lo de arriba y a corregir a lo de abajo
+
+# Para seguir preguntado, debiamos agregar otro while si en todo caso se debia repetir la pregunta gen1.
+    n = 1
+    while n >= 1 and n <=3:
+        while True:
+            gen = str(input("Coloque el nombre del gen: "))
+            if gen == "":
+                print("Si quieres salir, solo escribe solo asterisco (*) y si quieres continuar, escribe el nombre del gen")
+                continue
+            elif gen == "*":
+                print("Has salido del programa")
+                return
+            else:
+                break
+        print(gen)
+        while True:
+            print("Coloque la tasa de mutacion del gen ", gen)
+            tasagen = input()
+            if tasagen.isdigit(): #Evalua que es un entero, por que al ser correcto continua...
+                print("Es un numero entero", x) 
+                if tasagen == 1 or tasagen == 0:
+                    tasagen = float(tasagen)
+                    Datos[gen] = tasagen
+                elif tasagen < 0 or tasagen > 1:
+                    continue #Ahora que ya se sabe que es un valor entero, el input se convierte a un valor entero
+            elif '/' in tasagen:
+                numerador, denominador = tasagen.split('/')
+                valor = float(numerador) / float(denominador)
+                print(valor)
+                log = valor >= 0 and valor <= 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", valor)
+                    Datos[gen] = valor
+                    n += 1
+                    break
+            elif tasagen.replace(".", "").isnumeric(): # Si es un valor con decimal, pretende redondear el valor colocado
+                print("es decimal ", tasagen)
+                tasagen = float(tasagen)
+                log = tasagen > 0 and tasagen < 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", tasagen)
+                    Datos[gen] = tasagen
+                    n += 1
+                    break
+            elif tasagen=="*":
+                print("este es para salir") # SALITE
+                return
+            else:
+                print(x) # Hasta este punto el querer regresar hasta que se ponga un numero entero
+                continue
+        continue
+
+    return Datos
+Targetseq()
+~~~
 
 
 # Referencias
