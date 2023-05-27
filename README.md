@@ -1315,8 +1315,145 @@ Ya corregimos la parte para que solo pida tres genes y tambien para resolver el 
                 continue
         continue
 
-    return Datos
+    return Datos  
+~~~
+Ya se le agrego la generacion de nucletidos de manera aletoria, ademmas de pequeñas modificaciones
+~~~
+# Modificación de código, Fecha: 27/05/2023
+import random
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    Datos = {}
+    while True:
+        x = input("Coloque el tamaño de su secuencia")
+        if x.isdigit():
+            print("Es un numero entero", x)
+            x = int(x)
+        elif x.replace(".", "").isnumeric(): 
+            print("es decimal ",x,"por favor coloque un numero entero >201")
+            continue
+        elif x == "*":
+            print("Has salido del programa")
+            return        
+        else:
+            print("Si quieres salir, solo escribe (*) y si quieres continuar, debe poner un numero entero entre 201 a mas")
+            print("Debe poner un numero entero entre 201 a mas")
+            continue
+                  
+        if x < 201:
+            x = 201
+            print(x)
+            Datos["Tamaño de la secuencia"] = x
+            break
+        else:
+            y = x/3 == int(x/3)
+            if y == True:
+                print(x)
+                break
+            else:
+                debajo = x - 1
+                arriba = x + 1
+                while True:
+                    logicaMenor = debajo/3 == int(debajo/3)
+                    logicaMayor = arriba/3 == int(arriba/3)
+                    if logicaMenor == True:
+                        x = debajo
+                        Datos["Tamaño de la secuencia"] = x
+                        break
+                    if logicaMayor == True:
+                        x = arriba
+                        Datos["Tamaño de la secuencia"] = x
+                        break
+                    else:
+                        debajo = x - 1
+                        arriba = x + 1
+                break
+    n = 1
+    while n >= 1 and n <=3:
+        while True:
+            gen = str(input("Coloque el nombre del gen: "))
+            if (gen in Datos.keys()):
+                print(f"El gen {gen} ya existe, por favor asegura que estas en lo correcto")
+                continue 
+            elif gen == "":
+                print("Si quieres salir, solo escribe solo asterisco (*) y si quieres continuar, escribe el nombre del gen")
+                continue
+            elif gen == "*":
+                print("Has salido del programa")
+                return        
+            else:
+                print("A partir de aqui es que se agrega los valores y se procede a evaluar con las demas condicionales")
+                break  
+
+        print(gen)
+        while True:
+            print("Coloque la tasa de mutacion del gen ", gen)
+            tasagen = input()         
+            if tasagen.isdigit():
+                print("Es un numero entero", x)
+                tasagen = float(tasagen)
+                if tasagen == 1 or tasagen == 0:
+                    Datos[gen] = tasagen
+                    n += 1
+                    break
+                elif tasagen < 0.0 or tasagen > 1.0:
+                    print("Una tasa pertence entre 0 y 1")
+                    continue
+                else:
+                    Datos[gen] = tasagen
+                    n += 1
+            elif '/' in tasagen:
+                numerador, denominador = tasagen.split('/')
+                valor = float(numerador) / float(denominador)
+                print(valor)
+                log = valor >= 0 and valor <= 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", valor)
+                    Datos[gen] = valor
+                    n += 1
+                    break
+            elif tasagen.replace(".", "").isnumeric():
+                print("es decimal ", tasagen)
+                tasagen = float(tasagen)
+                log = tasagen > 0 and tasagen < 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", tasagen)
+                    Datos[gen] = tasagen
+                    n += 1
+                    break
+            elif tasagen=="":
+                print("Por favor coloque una tasa entre 0 y 1 o escribe '*' para salir")
+                continue
+            elif tasagen=="*":
+                print("este es para salir") # SALITE
+                return
+            else:
+                print(x)
+                continue
+        continue
     
+    # Ahora se pretende que el programa te de la secuencia y te de el tamaño de los genes
+    seq = ""
+    NucleoATGC = "ATGC"
+    n = 0
+    while n <= x:
+        alea = random.randint(0,3)
+        N = NucleoATGC[alea]
+        seq += str(N)
+        n += 1
+    
+    # Ahora que ya tenemos la secuencia de referencia formada, empezaremos a definir de manera aleatoria los tamaños de las secuencias
+    # Para ello lo que añadiremos es de acuerdo al tamaño, utilizaremos de 3 en tres, el proceso de seleccion de los genes
+    ## HAY QUE CONSIDERAR QUE TODOS LOS GENES + SUS PROMOTORES TENDRAN EL MISMO TAMAÑO, LO QUE CAMBIA ES LA TASA Y EL GEN
+    
+    
+Targetseq()
 ~~~
 
 # Referencias
