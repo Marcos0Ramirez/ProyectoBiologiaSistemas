@@ -1259,5 +1259,65 @@ Pero ahora, solo falta corregir lo de la tasa de mutacion, se queda en bucle pid
                 print("A partir de aqui es que se agrega los valores y se procede a evaluar con las demas condicionales")
                 break  
 ~~~
+Ya corregimos la parte para que solo pida tres genes y tambien para resolver el bucle cuando se ponia nada ("")
+~~~
+
+        print(gen)
+        while True:
+            print("Coloque la tasa de mutacion del gen ", gen)
+            tasagen = input()         
+            if tasagen.isdigit(): #Evalua que es un entero, por que al ser correcto continua...
+                print("Es un numero entero", x)
+                tasagen = float(tasagen)
+                if tasagen == 1 or tasagen == 0:
+                    Datos[gen] = tasagen
+                    n += 1
+                    break
+                elif tasagen < 0.0 or tasagen > 1.0:
+                    print("Una tasa pertence entre 0 y 1")
+                    continue #Ahora que ya se sabe que es un valor entero, el input se convierte a un valor entero
+                else:
+                    Datos[gen] = tasagen
+                    n += 1
+            elif '/' in tasagen:
+                numerador, denominador = tasagen.split('/')
+                valor = float(numerador) / float(denominador)
+                print(valor)
+                log = valor >= 0 and valor <= 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", valor)
+                    Datos[gen] = valor
+                    n += 1
+                    break
+            elif tasagen.replace(".", "").isnumeric(): # Si es un valor con decimal, pretende redondear el valor colocado
+                print("es decimal ", tasagen)
+                tasagen = float(tasagen)
+                log = tasagen > 0 and tasagen < 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", tasagen)
+                    Datos[gen] = tasagen
+                    n += 1
+                    break
+            elif tasagen=="":
+                print("Por favor coloque una tasa entre 0 y 1 o escribe '*' para salir") # SALITE
+                continue
+            elif tasagen=="*":
+                print("este es para salir") # SALITE
+                return
+            else:
+                print(x) # Hasta este punto el querer regresar hasta que se ponga un numero entero
+                continue
+        continue
+
+    return Datos
+    
+~~~
+
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
