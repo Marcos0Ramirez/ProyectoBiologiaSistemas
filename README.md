@@ -1239,6 +1239,25 @@ def Targetseq():
     return Datos
 Targetseq()
 ~~~
-
+Se le dio un ligero retoque a esta parte del codigo, para que se considerara todas las condicionales
+Pero ahora, solo falta corregir lo de la tasa de mutacion, se queda en bucle pidiendo de nuevo el valor sin salirse.
+~~~
+    n = 1
+    while n >= 1 and n <=3:
+        while True:
+            gen = str(input("Coloque el nombre del gen: "))
+            if (gen in Datos.keys()):
+                print(f"El gen {gen} ya existe, por favor asegura que estas en lo correcto")
+                continue # Hasta este punto ya se logro modificar las condicionales para que pudiese detectar si habia alguno ahi que ya existia
+            elif gen == "":
+                print("Si quieres salir, solo escribe solo asterisco (*) y si quieres continuar, escribe el nombre del gen")
+                continue
+            elif gen == "*":
+                print("Has salido del programa")
+                return        
+            else:
+                print("A partir de aqui es que se agrega los valores y se procede a evaluar con las demas condicionales")
+                break  
+~~~
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
