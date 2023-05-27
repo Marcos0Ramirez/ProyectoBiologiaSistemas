@@ -1118,5 +1118,127 @@ def Targetseq():
 Targetseq()
 ~~~
 
+
+Hasta este momento ya se logro hacer que al programa pudiese detectar el nombre repetido de la lista.
+Hasta es puto vamos a considerar que si se escribe gen1 es diferente que Gen1 o que GEn1 o que GEN1, seran las diferentes formas de que un mismo gen se puede detectar pero que a lo mejor se quiere probar algo etc
+~~~
+# Modificación de código, Fecha: 26/05/2023
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    Datos = {}
+    while True:
+        x = input("Coloque el tamaño de su secuencia")
+        if x.isdigit():
+            print("Es un numero entero", x)
+            x = int(x)
+        elif x.replace(".", "").isnumeric(): 
+            print("es decimal ",x,"por favor coloque un numero entero >201")
+            continue
+        elif x == "*":
+            print("Has salido del programa")
+            return        
+        else:
+            print("Si quieres salir, solo escribe (*) y si quieres continuar, debe poner un numero entero entre 201 a mas")
+            print("Debe poner un numero entero entre 201 a mas")
+            continue
+                  
+        if x < 201:
+            x = 201
+            print(x)
+            break
+        else:
+            y = x/3 == int(x/3) #Establece si el valor que se divide es entero, si no lo es dara False
+            # Para saber si por el numero de genes da un numero entero para jugar con eso en la secuencia
+            # La logica es que al decir que no es un real
+            if y == True:
+                print(x)
+                break
+            else:
+                debajo = x - 1
+                arriba = x + 1
+                while True:
+                    logicaMenor = debajo/3 == int(debajo/3)
+                    logicaMayor = arriba/3 == int(arriba/3)
+                    if logicaMenor == True:
+                        x = debajo
+                        print(x)
+                        break
+                    if logicaMayor == True:
+                        x = arriba
+                        print(x)
+                        break
+                    else:
+                        debajo = x - 1
+                        arriba = x + 1
+                break
+    n = 1
+    while n >= 1 and n <=3:
+        while True:
+            gen = str(input("Coloque el nombre del gen: "))
+            if (gen in Datos.keys()):
+                print(f"El gen {gen} ya existe, por favor asegura que estas en lo correcto")
+                continue # Hasta este punto ya se logro modificar las condicionales para que pudiese detectar si habia alguno ahi que ya existia
+            else:
+                print("A partir de aqui es que se agrega los valores y se procede a evaluar con las demas condicionales")
+                break  
+            if gen == "":
+                print("Si quieres salir, solo escribe solo asterisco (*) y si quieres continuar, escribe el nombre del gen")
+                continue
+            elif gen == "*":
+                print("Has salido del programa")
+                return
+            else:
+                break
+        print(gen)
+        while True:
+            print("Coloque la tasa de mutacion del gen ", gen)
+            tasagen = input()         
+            if tasagen.isdigit(): #Evalua que es un entero, por que al ser correcto continua...
+                print("Es un numero entero", x)
+                tasagen = float(tasagen)
+                if tasagen == 1 or tasagen == 0:
+                    Datos[gen] = tasagen
+                    break
+                elif tasagen < 0.0 or tasagen > 1.0:
+                    continue #Ahora que ya se sabe que es un valor entero, el input se convierte a un valor entero
+                else:
+                    Datos[gen] = tasagen
+            elif '/' in tasagen:
+                numerador, denominador = tasagen.split('/')
+                valor = float(numerador) / float(denominador)
+                print(valor)
+                log = valor >= 0 and valor <= 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", valor)
+                    Datos[gen] = valor
+                    n += 1
+                    break
+            elif tasagen.replace(".", "").isnumeric(): # Si es un valor con decimal, pretende redondear el valor colocado
+                print("es decimal ", tasagen)
+                tasagen = float(tasagen)
+                log = tasagen > 0 and tasagen < 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", tasagen)
+                    Datos[gen] = tasagen
+                    n += 1
+                    break
+            elif tasagen=="*":
+                print("este es para salir") # SALITE
+                return
+            else:
+                print(x) # Hasta este punto el querer regresar hasta que se ponga un numero entero
+                continue
+        continue
+
+    return Datos
+Targetseq()
+~~~
+
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
