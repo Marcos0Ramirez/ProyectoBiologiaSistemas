@@ -1479,5 +1479,199 @@ df = pd.DataFrame(data)
 # Imprimir el DataFrame
 print(df)
 ~~~
+Pequeño punto de partida para continuar
+~~~
+# Modificación de código, Fecha: 28/05/2023
+import random
+import pandas as pd
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    Datos = {}
+    genes = []
+    tasas = []
+    while True:
+        x = input("Coloque el tamaño de su secuencia")
+        if x.isdigit():
+            print("Es un numero entero", x)
+            x = int(x)
+            break
+        elif x.replace(".", "").isnumeric(): 
+            print("es decimal ",x,"por favor coloque un numero entero >201")
+            continue
+        elif x == "*":
+            print("Has salido del programa")
+            return        
+        else:
+            print("Si quieres salir, solo escribe (*) y si quieres continuar, debe poner un numero entero entre 201 a mas")
+            print("Debe poner un numero entero entre 201 a mas")
+            continue
+    while True:                  
+        if x < 201:
+            x = 201
+            print(x)
+            Datos["Tamaño de la secuencia"] = x
+            break
+        else:
+            y = x/3 == int(x/3)
+            if y == True:
+                print(x)
+                break
+            else:
+                debajo = x - 1
+                arriba = x + 1
+                while True:
+                    logicaMenor = debajo/3 == int(debajo/3)
+                    logicaMayor = arriba/3 == int(arriba/3)
+                    if logicaMenor == True:
+                        x = debajo
+                        Datos["Tamaño de la secuencia"] = x
+                        break
+                    if logicaMayor == True:
+                        x = arriba
+                        Datos["Tamaño de la secuencia"] = x
+                        break
+                    else:
+                        debajo = x - 1
+                        arriba = x + 1
+                break
+    n = 1
+    while n >= 1 and n <=3:
+        while True:
+            gen = str(input("Coloque el nombre del gen: "))
+            if (gen in Datos.keys()):
+                print(f"El gen {gen} ya existe, por favor asegura que estas en lo correcto")
+                continue 
+            elif gen == "":
+                print("Si quieres salir, solo escribe solo asterisco (*) y si quieres continuar, escribe el nombre del gen")
+                continue
+            elif gen == "*":
+                print("Has salido del programa")
+                return        
+            else:
+                print("A partir de aqui es que se agrega los valores y se procede a evaluar con las demas condicionales")
+                genes.append(gen)
+                break  
+
+        print(gen)
+        while True:
+            print("Coloque la tasa de mutacion del gen ", gen)
+            tasagen = input()         
+            if tasagen.isdigit():
+                print("Es un numero entero", x)
+                tasagen = float(tasagen)
+                if tasagen == 1 or tasagen == 0:
+                    Datos[gen] = tasagen
+                    tasas.append(tasagen)
+                    n += 1
+                    break
+                elif tasagen < 0.0 or tasagen > 1.0:
+                    print("Una tasa pertence entre 0 y 1")
+                    continue
+                else:
+                    Datos[gen] = tasagen
+                    tasas.append(tasagen)
+                    n += 1
+            elif '/' in tasagen:
+                numerador, denominador = tasagen.split('/')
+                valor = float(numerador) / float(denominador)
+                print(valor)
+                log = valor >= 0 and valor <= 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", valor)
+                    Datos[gen] = valor
+                    tasas.append(valor)
+                    n += 1
+                    break
+            elif tasagen.replace(".", "").isnumeric():
+                print("es decimal ", tasagen)
+                tasagen = float(tasagen)
+                log = tasagen > 0 and tasagen < 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", tasagen)
+                    Datos[gen] = tasagen
+                    tasas.append(tasagen)
+                    n += 1
+                    break
+            elif tasagen=="":
+                print("Por favor coloque una tasa entre 0 y 1 o escribe '*' para salir")
+                continue
+            elif tasagen=="*":
+                print("este es para salir") # SALITE
+                return
+            else:
+                print(x)
+                continue
+        continue
+    
+    # Ahora se pretende que el programa te de la secuencia y te de el tamaño de los genes
+    seq = ""
+    NucleoATGC = "ATGC"
+    l = x - 1
+    n = 0
+    while n <= l:
+        alea = random.randint(0,3)
+        N = NucleoATGC[alea]
+        seq += str(N)
+        n += 1
+    
+    # Ahora que ya tenemos la secuencia de referencia formada, empezaremos a definir de manera aleatoria los tamaños de las secuencias
+    # Para ello lo que añadiremos es de acuerdo al tamaño, utilizaremos de 3 en tres, el proceso de seleccion de los genes
+    ## HAY QUE CONSIDERAR QUE TODOS LOS GENES + SUS PROMOTORES TENDRAN EL MISMO TAMAÑO, LO QUE CAMBIA ES LA TASA Y EL GEN
+    
+    # Definimos la longitus de los genes
+    posgen = (x/3) - 1 # CONSERVAMOS EL NUMERO ORIGINAL PARA HACER LA OPERACION DE POSICION
+    # DE REFERENCIA, X = 201, pero se divide y resta -1, queda 66
+    inicial = [] 
+    final = [] # CREAMOS DOS LISTAS PARA ALMACENAR LAS OPERACIONES DE LAS POSICIONES DE LOS GENES
+    n = 1
+    while n <= 3:
+        if n == 1:
+            inicial.append(0) # Se agrega inmediatamente hasta la posicion inicial del gen 1 (se agrega 0)
+            final.append(posgen) # para tambien agregar la posicion final del gen 1 (se agrega 66)
+            posgen_i = posgen + 1 # Mas pronto de lo que canta un gallo, se le suma para 67
+            posgen_f = posgen_i + posgen # Ahora tambien suma 67 + 66 = 133
+            n += 1
+            continue # Hace que se regrese al bucle para inicial con 67 y finalizar con 133 para el gen 2
+        else: #Como el valor de n ya no es 1, ahora es 2, por lo que entra al else
+            inicial.append(posgen_i) # Mete el valor 67 de haber regresado de nuevo del bucle
+            final.append(posgen_f) # Mete el valor 133 final del gen 
+            posgen_i = posgen_f + 1 # Ahora suma 133 del final del gen 1 mas 1
+            posgen_f = posgen_i + posgen # Asi como se guardo 134 se suman de nuevo los 66 para tener 200
+            n += 1
+            continue # Vuelve a regresar para ejecutar el bucle para solo entrar al else y adicionar 134 y 200
+        break
+    print(list(Datos.keys()))
+    print(genes)
+    print(tasas)
+    print(inicial)
+    print(final)
+    # Ahora solo como extra solo guardamos las secuencias de los genes para que sean visibles
+    fragmentos = []
+    n = 0
+    while n <= 2:
+        frg = seq[int(inicial[n]):int(final[n])]
+        fragmentos.append(frg)
+        n += 1
+        
+    
+    # Procedemos a guardar el diccionario original, para poder modificar
+    genoma = {
+    'promotor+gen': genes,
+    'Posicion_inicial':inicial,
+    'Posicion_final':final,
+    'Tasa del gen correspondiente': tasas,
+    'Fragmentos de los genes': fragmentos
+    }
+    df = pd.DataFrame(genoma)
+    return Datos, seq, len(seq), df
+
+Targetseq()
+~~~
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
