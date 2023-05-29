@@ -1455,6 +1455,29 @@ def Targetseq():
     
 Targetseq()
 ~~~
+28/05/2023
+Pequeña prueba, para ver como se adaptan las claves de un diccionario
+~~~
+import pandas as pd
+dicprueba = {'3': 1.0, 'tres': 0.0, '3¡0': 1.0, '93': 0.2}
+print(dicprueba.keys())
+print(list(dicprueba.keys()))
+print(type(dicprueba.keys()))
 
+
+
+# Datos para el DataFrame
+data = {
+    'Nombre': list(dicprueba.keys()),
+    'Edad': [25, 30, 28, 32],
+    'Ciudad': ['Madrid', 'Barcelona', 'Sevilla', 'Valencia']
+}
+
+# Crear DataFrame
+df = pd.DataFrame(data)
+
+# Imprimir el DataFrame
+print(df)
+~~~
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
