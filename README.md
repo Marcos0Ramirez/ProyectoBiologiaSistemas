@@ -1658,15 +1658,42 @@ def Targetseq():
         frg = seq[int(inicial[n]):int(final[n])]
         fragmentos.append(frg)
         n += 1
-        
-    
+    # Seleccion de tamaño de promotores 
+    promotores = []
+    for i in inicial:
+        if x < 403:
+            longprom = [6, 9, 12]
+            tino = random.choice(longprom)
+            promotor = i + tino
+            promotores.append(promotor)
+        elif x > 404 and x < 604:
+            longprom = [6, 9, 12, 15]
+            tino = random.choice(longprom)
+            promotor = i + tino
+            promotores.append(promotor)
+        elif x > 605 and x < 1000:
+            longprom = [6, 9, 12, 15, 18, 21]
+            tino = random.choice(longprom)
+            promotor = i + tino
+            promotores.append(promotor)
+            
+    fragpromotor = []
+    n = 0
+    while n <= 2:
+        frg_p = seq[int(inicial[n]):int(promotores[n])]
+        fragpromotor.append(frg_p)
+        n += 1
+
     # Procedemos a guardar el diccionario original, para poder modificar
     genoma = {
     'promotor+gen': genes,
-    'Posicion_inicial':inicial,
-    'Posicion_final':final,
-    'Tasa del gen correspondiente': tasas,
-    'Fragmentos de los genes': fragmentos
+    'Pos_ini':inicial,
+    'Pos_fin':final,
+    'Tasa gen': tasas,
+    'Fragmentos genes': fragmentos,
+    'ini_prom': inicial,
+    'fin_prom': promotores,
+    'Frag_promotor': fragpromotor
     }
     df = pd.DataFrame(genoma)
     return Datos, seq, len(seq), df
