@@ -2232,5 +2232,113 @@ def Targetseq():
 
 Targetseq()
 ```
+31/05/2023
+Avanzamos esto
+```python
+###########################################################################################################
+# Modificación de código, Fecha: 31/05/2023
+# Ahora toca definir los nucleotidos que seran conservados tanto en el promotor como en el gen
+# EN GEN
+# Tomaremos esta condicional, por tamaño de promotor [6, 9, 12, 15, 18, 21]
+# Les correspondera que los pares, mitad se conservara y los impares mas de la mitad se conserva: [3, 5, 6, 8, 9, 11]
+    Conservados_Gen = {}
+    # Para ello delimitaremos el valor de las que se seleccionara de manera aleatoria los nucleotidos a conservar
+    
+    #Ya solo falta crear un diccionario para relacionar nombre con promotor
+    poseqGENconservar = [] # Este sera para almacenar la posiciones que va a conservar
+    
+    ####################
+    rango = range(2, 24) #queda pendiente definir a que rango
+    #####################
+    
+    for k, i in zip(genes, fragensinprom): # Donde guardamos la secuencia del gen, secuencia del promotor
+        genpos = []
+        for a, b in enumerate(i):
+            genpos.append(a)
+        #random = random.choice(rango)
+        lon = len(i)
+        if lon < 235: # Se calculo max(x) = 1000 y min(x) = 403 numero intermedio es round((1000 - 403)/2) + 403 = 702
+            # Ya que solo queremos dividir entre 2 la cantidad de nucleotidos a guardar, tomamos 702/3 = 234 es el tamaño del gen
+            # Pusimos 235 para que quepa en el minimo el valor de 234
+            rand = random.choice(range(2, 11)) # Solo hara que conserve una cantida de nucleotido de 2 a 11
+        else:
+            rand = random.choice(range(11, 24)) # Solo hara que conserve una cantida de nucleotido de 11 a 24    
+        select = random.sample(genpos,rand)
+        Conservados_Gen[k] = select
+#############################################
+```
+Corregimos y agregamos esta parte del codigo
+```python
+    ################################################################################################3
+    #Tambien se quieren saber las posiciones 31/05/2023
+    listseq=[]
+    seqposicion=[]
+    for i, j in enumerate(seq):
+        listseq.append(j)
+        seqposicion.append(i)
+    ################################################################################################3
+    #31/05/2023 CORRECCION
+    # Ahora que ya tenemos la secuencia de referencia formada, empezaremos a definir de manera aleatoria los tamaños de las secuencias
+    # Para ello lo que añadiremos es de acuerdo al tamaño, utilizaremos de 3 en tres, el proceso de seleccion de los genes
+    ## HAY QUE CONSIDERAR QUE TODOS LOS GENES + SUS PROMOTORES TENDRAN EL MISMO TAMAÑO, LO QUE CAMBIA ES LA TASA Y EL GEN
+    
+    # Definimos la longitus de los genes
+    posgen = (x/3) #Eliminamos - 1 y con la referencia 201, al dividirlo en 3 queda 67
+    inicial = [] 
+    final = [] # CREAMOS DOS LISTAS PARA ALMACENAR LAS OPERACIONES DE LAS POSICIONES DE LOS GENES
+    n = 1
+    while n <= 3:
+        if n == 1:
+            inicial.append(0) # Se agrega inmediatamente hasta la posicion inicial del gen 1 (se agrega 0)
+            final.append(posgen) # para tambien agregar la posicion final del gen 1 (se agrega 67) para que delimite del nucleotido del 0 a 66
+            posgen_i = posgen # Se conserva la posicion final en la inical del siguiente gen
+            posgen_f = posgen_i + posgen # Ahora tambien suma 67 + 67 = 134
+            n += 1
+            continue # Hace que se regrese al bucle para inicial con 67 (considera la pos 67) para finalizar con 134 para el gen 2
+        else: #Como el valor de n ya no es 1, ahora es 2, por lo que entra al else
+            inicial.append(posgen_i) # Mete el valor 67 de haber regresado de nuevo del bucle
+            final.append(posgen_f) # Mete el valor 134 final del gen (por lo que el gen considera de 67 a 133 en posicion
+            posgen_i = posgen_f # Ahora guarda 134 en posicion inicial del gen 3
+            posgen_f = posgen_i + posgen # Asi como se guardo 134 se suman de nuevo los 67 para tener 201
+            n += 1
+            continue # Vuelve a regresar para ejecutar el bucle para solo entrar al else y adicionar 134 y 201 (que al parecer el software corrige y considera de 134 a 200).
+        break
+
+################################################################################################
+```
+
+```python
+```
+
+```python
+```
+
+```python
+```
+
+```python
+```
+
+```python
+```
+
+```python
+```
+
+```python
+```
+```python
+```
+```python
+```
+```python
+```
+```python
+```
+```python
+```
+```python
+```
+
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
