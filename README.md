@@ -1941,12 +1941,12 @@ Targetseq()
 ~~~
 30/05/2023
 Se modifico parte de la seleccion puntos de conservacion
-> Pendientes, va ser almacenar los nucleotidos de dichas posiciones
-> Establecer un porcentaje de conservacion de manera aletoria para el gen
-> Empezar a crear las poblacione de manera aletaoria con dichos andamios (regiones conservadas)
-> Definir funcion de mutacion depues del cruce
-> Definir funcion fitness por similitud a la secuencia objetivo
-~~~
+1. Pendientes, va ser almacenar los nucleotidos de dichas posiciones
+2. Establecer un porcentaje de conservacion de manera aletoria para el gen
+3. Empezar a crear las poblacione de manera aletaoria con dichos andamios (regiones conservadas)
+4. Definir funcion de mutacion depues del cruce
+5. Definir funcion fitness por similitud a la secuencia objetivo
+```
 ### Modificación de código, Fecha: 30/05/2023
 import random
 import pandas as pd
@@ -2231,6 +2231,6 @@ def Targetseq():
     return Datos, seq, len(seq), df
 
 Targetseq()
-~~~
+```
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
