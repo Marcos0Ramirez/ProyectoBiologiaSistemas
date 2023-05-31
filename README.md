@@ -87,7 +87,7 @@ Este [link](https://docs.google.com/document/d/1YDm086PFRrov0miDkIycMEBP3UxLSZK-
 Codigo python
 
 
-```python
+```scrollable python
 # Libro en donde se va a poner todo el codigo sobre el simulador de la evolucion
 # Contamos con PURINAS = ADENINA (A) y GUANINA (G)
 # Contamos con PIRIMIDINAS = CITOSINA (C) y [[TIMINA (T) y URACILO (U)]]
