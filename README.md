@@ -1939,6 +1939,298 @@ def Targetseq():
 
 Targetseq()
 ~~~
+30/05/2023
+Se modifico parte de la seleccion puntos de conservacion
+> Pendientes, va ser almacenar los nucleotidos de dichas posiciones
+> Establecer un porcentaje de conservacion de manera aletoria para el gen
+> Empezar a crear las poblacione de manera aletaoria con dichos andamios (regiones conservadas)
+> Definir funcion de mutacion depues del cruce
+> Definir funcion fitness por similitud a la secuencia objetivo
+~~~
+### Modificación de código, Fecha: 30/05/2023
+import random
+import pandas as pd
+def Targetseq():
+    print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
+    Datos = {}
+    genes = []
+    tasas = []
+    while True:
+        x = input("Coloque el tamaño de su secuencia")
+        if x.isdigit():
+            print("Es un numero entero", x)
+            x = int(x)
+            break
+        elif x.replace(".", "").isnumeric(): 
+            print("es decimal ",x,"por favor coloque un numero entero >201")
+            continue
+        elif x == "*":
+            print("Has salido del programa")
+            return        
+        else:
+            print("Si quieres salir, solo escribe (*) y si quieres continuar, debe poner un numero entero entre 201 a mas")
+            print("Debe poner un numero entero entre 201 a mas")
+            continue
+    while True:                  
+        if x < 201:
+            x = 201
+            print(x)
+            Datos["Tamaño de la secuencia"] = x
+            break
+        else:
+            y = x/3 == int(x/3)
+            if y == True:
+                print(x)
+                break
+            else:
+                debajo = x - 1
+                arriba = x + 1
+                while True:
+                    logicaMenor = debajo/3 == int(debajo/3)
+                    logicaMayor = arriba/3 == int(arriba/3)
+                    if logicaMenor == True:
+                        x = debajo
+                        Datos["Tamaño de la secuencia"] = x
+                        break
+                    if logicaMayor == True:
+                        x = arriba
+                        Datos["Tamaño de la secuencia"] = x
+                        break
+                    else:
+                        debajo = x - 1
+                        arriba = x + 1
+                break
+    n = 1
+    while n >= 1 and n <=3:
+        while True:
+            gen = str(input("Coloque el nombre del gen: "))
+            if (gen in Datos.keys()):
+                print(f"El gen {gen} ya existe, por favor asegura que estas en lo correcto")
+                continue 
+            elif gen == "":
+                print("Si quieres salir, solo escribe solo asterisco (*) y si quieres continuar, escribe el nombre del gen")
+                continue
+            elif gen == "*":
+                print("Has salido del programa")
+                return        
+            else:
+                print("A partir de aqui es que se agrega los valores y se procede a evaluar con las demas condicionales")
+                genes.append(gen)
+                break  
 
+        print(gen)
+        while True:
+            print("Coloque la tasa de mutacion del gen ", gen)
+            tasagen = input()         
+            if tasagen.isdigit():
+                print("Es un numero entero", x)
+                tasagen = float(tasagen)
+                if tasagen == 1 or tasagen == 0:
+                    Datos[gen] = tasagen
+                    tasas.append(tasagen)
+                    n += 1
+                    break
+                elif tasagen < 0.0 or tasagen > 1.0:
+                    print("Una tasa pertence entre 0 y 1")
+                    continue
+                else:
+                    Datos[gen] = tasagen
+                    tasas.append(tasagen)
+                    n += 1
+            elif '/' in tasagen:
+                numerador, denominador = tasagen.split('/')
+                valor = float(numerador) / float(denominador)
+                print(valor)
+                log = valor >= 0 and valor <= 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", valor)
+                    Datos[gen] = valor
+                    tasas.append(valor)
+                    n += 1
+                    break
+            elif tasagen.replace(".", "").isnumeric():
+                print("es decimal ", tasagen)
+                tasagen = float(tasagen)
+                log = tasagen > 0 and tasagen < 1
+                if log == False:
+                    print("intentalo de nuevo, debe ser un numero real que pertencezca a [0,1]")
+                    continue
+                else:
+                    print("Excelente, si es una tasa viable", tasagen)
+                    Datos[gen] = tasagen
+                    tasas.append(tasagen)
+                    n += 1
+                    break
+            elif tasagen=="":
+                print("Por favor coloque una tasa entre 0 y 1 o escribe '*' para salir")
+                continue
+            elif tasagen=="*":
+                print("este es para salir") # SALITE
+                return
+            else:
+                print(x)
+                continue
+        continue
+    
+    # Ahora se pretende que el programa te de la secuencia y te de el tamaño de los genes
+    seq = ""
+    NucleoATGC = "ATGC"
+    l = x - 1
+    n = 0
+    while n <= l:
+        alea = random.randint(0,3)
+        N = NucleoATGC[alea]
+        seq += str(N)
+        n += 1
+    
+    # Ahora que ya tenemos la secuencia de referencia formada, empezaremos a definir de manera aleatoria los tamaños de las secuencias
+    # Para ello lo que añadiremos es de acuerdo al tamaño, utilizaremos de 3 en tres, el proceso de seleccion de los genes
+    ## HAY QUE CONSIDERAR QUE TODOS LOS GENES + SUS PROMOTORES TENDRAN EL MISMO TAMAÑO, LO QUE CAMBIA ES LA TASA Y EL GEN
+    
+    # Definimos la longitus de los genes
+    posgen = (x/3) - 1 # CONSERVAMOS EL NUMERO ORIGINAL PARA HACER LA OPERACION DE POSICION
+    # DE REFERENCIA, X = 201, pero se divide y resta -1, queda 66
+    inicial = [] 
+    final = [] # CREAMOS DOS LISTAS PARA ALMACENAR LAS OPERACIONES DE LAS POSICIONES DE LOS GENES
+    n = 1
+    while n <= 3:
+        if n == 1:
+            inicial.append(0) # Se agrega inmediatamente hasta la posicion inicial del gen 1 (se agrega 0)
+            final.append(posgen) # para tambien agregar la posicion final del gen 1 (se agrega 66)
+            posgen_i = posgen + 1 # Mas pronto de lo que canta un gallo, se le suma para 67
+            posgen_f = posgen_i + posgen # Ahora tambien suma 67 + 66 = 133
+            n += 1
+            continue # Hace que se regrese al bucle para inicial con 67 y finalizar con 133 para el gen 2
+        else: #Como el valor de n ya no es 1, ahora es 2, por lo que entra al else
+            inicial.append(posgen_i) # Mete el valor 67 de haber regresado de nuevo del bucle
+            final.append(posgen_f) # Mete el valor 133 final del gen 
+            posgen_i = posgen_f + 1 # Ahora suma 133 del final del gen 1 mas 1
+            posgen_f = posgen_i + posgen # Asi como se guardo 134 se suman de nuevo los 66 para tener 200
+            n += 1
+            continue # Vuelve a regresar para ejecutar el bucle para solo entrar al else y adicionar 134 y 200
+        break
+
+################################################################################################
+    # Ahora solo como extra solo guardamos las secuencias de los genes para que sean visibles
+    fragmentos = []
+    n = 0
+    while n <= 2:
+        frg = seq[int(inicial[n]):int(final[n])] # Recortamos los valores de las secuencias que son promotor + gen
+        fragmentos.append(frg) 
+        n += 1
+################################################################################################
+    # Seleccion de tamaño de promotores 
+    promotores = []
+    for i in inicial:
+        if x < 403: # De las listas, se procede a tomar los valores iniciales
+            longprom = [6, 9, 12]
+            tino = random.choice(longprom)
+            promotor = i + tino # Con el valor incial se hace la suma de la longitud del promotor, igual para los 3 valores
+            promotores.append(promotor) # Se agrega el final del promotor, de cada uno de los genes
+        elif x > 404 and x < 604:
+            longprom = [6, 9, 12, 15]
+            tino = random.choice(longprom)
+            promotor = i + tino
+            promotores.append(promotor)
+        elif x > 605 and x < 1000:
+            longprom = [6, 9, 12, 15, 18, 21]
+            tino = random.choice(longprom)
+            promotor = i + tino
+            promotores.append(promotor)
+################################################################################################
+    fragpromotor = []
+    fragensinprom = []
+    n = 0
+    while n <= 2: # Ahora que ya se tienen las coordenadas de las secuencias, recortamos.
+        frg_p = seq[int(inicial[n]):int(promotores[n])] # Asi definimos de la secuencia la longitud del promotor
+        fragpromotor.append(frg_p)
+        frg_g = seq[int(promotores[n]):int(final[n])] # Tomando en cuenta que al inicio del gen, se recorta en la posicion del final del promotor
+        fragensinprom.append(frg_g)        
+        n += 1
+
+        
+###########################################################################################################
+# Ahora toca definir los nucleotidos que seran conservados tanto en el promotor como en el gen
+# EN PROMOTOR
+# Tomaremos esta condicional, por tamaño de promotor [6, 9, 12, 15, 18, 21]
+# Les correspondera que los pares, mitad se conservara y los impares mas de la mitad se conserva: [3, 5, 6, 8, 9, 11]
+    Conservados_Promotor = {}
+    # Para ello delimitaremos el valor de las que se seleccionara de manera aleatoria los nucleotidos a conservar
+    # Modificación de código, Fecha: 30/05/2023
+    #Ya solo falta crear un diccionario para relacionar nombre con promotor
+    poseqPromconservar = [] # Este sera para almacenar la posiciones que va a conservar
+    longitudes_prom = [6, 9, 12, 15, 18, 21]
+    No_conservados = [3, 5, 6, 8, 9, 11]
+    for i, j in zip(genes, fragpromotor): # Donde guardamos el nombre de los genes, secuencia del promotor, Longitud promotor, No de conservados
+        long = len(j) # Toma la secuencia y le calcula su longitud
+        guarda = longitudes_prom.index(long) # Ahora comprobamos en que posicion se encuentra, para saber cuantos se van a conservar
+        Conserva = No_conservados[guarda] # Define cuantos se van a conservar
+        JuntarPgen = "".join(["P_",i]) # Aqui solo se le adhiere el P que indica el nombre del promotor
+        postemp = [] # Este servira para almacenar las posiciones de cada uno de los nucleortidos del promotor
+        for a, b in enumerate(j):
+            postemp.append(a) #Aqui solo lo que hara es guardar las posiciones de cada uno de los nucleotidos
+        select = random.sample(postemp,Conserva)
+        Conservados_Promotor[JuntarPgen] = select
+        
+    
+###########################################################################################################
+# Ahora toca definir los nucleotidos que seran conservados tanto en el promotor como en el gen
+# EN GEN
+# Tomaremos esta condicional, por tamaño de promotor [6, 9, 12, 15, 18, 21]
+# Les correspondera que los pares, mitad se conservara y los impares mas de la mitad se conserva: [3, 5, 6, 8, 9, 11]
+    Conservados_Promotor = {}
+    # Para ello delimitaremos el valor de las que se seleccionara de manera aleatoria los nucleotidos a conservar
+    # Modificación de código, Fecha: 30/05/2023
+    #Ya solo falta crear un diccionario para relacionar nombre con promotor
+    poseqPromconservar = [] # Este sera para almacenar la posiciones que va a conservar
+    longitudes_prom = [6, 9, 12, 15, 18, 21]
+    No_conservados = [3, 5, 6, 8, 9, 11]
+    for i, j in zip(genes, fragpromotor): # Donde guardamos el nombre de los genes, secuencia del promotor, Longitud promotor, No de conservados
+        long = len(j) # Toma la secuencia y le calcula su longitud
+        guarda = longitudes_prom.index(long) # Ahora comprobamos en que posicion se encuentra, para saber cuantos se van a conservar
+        Conserva = No_conservados[guarda] # Define cuantos se van a conservar
+        JuntarPgen = "".join(["P_",i]) # Aqui solo se le adhiere el P que indica el nombre del promotor
+        postemp = [] # Este servira para almacenar las posiciones de cada uno de los nucleortidos del promotor
+        for a, b in enumerate(j):
+            postemp.append(a) #Aqui solo lo que hara es guardar las posiciones de cada uno de los nucleotidos
+        select = random.sample(postemp,Conserva)
+        Conservados_Promotor[JuntarPgen] = select
+        
+    
+###########################################################################################################
+    print("Aqui estan los nombres de los genes y tamaño de la secuencia",list(Datos.keys()))
+    print("Aqui se muestra el nombre de los genes",genes)
+    print("Aqui se muestran las tasas correspondintes",tasas)
+    print("Aqui se muestra el inicio de gen + promotor",inicial)
+    print("Aqui se muestra el fin de gen + promotor",final)
+    print("Aqui se muestra el inicio de promotor",inicial)
+    print("Aqui se muestra el fin de promotor", promotores)
+    print("Aqui se muestra el inicio de solo el gen", promotores)
+    print("Aqui se muestra el fin de solo el gen", final)
+    print("Aqui se muestra el nombre de promotor y posiciones a consevar", Conservados_Promotor)
+    
+    # Procedemos a guardar el diccionario original, para poder modificar
+    genoma = {
+    'promotor+gen': genes,
+    'Pos_ini':inicial,
+    'Pos_fin':final,
+    'Tasa gen': tasas,
+    'Fragmentos genes': fragmentos,
+    'ini_prom': inicial,
+    'fin_prom': promotores,
+    'Frag_promotor': fragpromotor,
+    'ini_gen': promotores,
+    'fin_gen': final,
+    'gen': fragensinprom
+    }
+    
+    df = pd.DataFrame(genoma)
+    return Datos, seq, len(seq), df
+
+Targetseq()
+~~~
 # Referencias
 ## Greenwell, R. N., Angus, J. E., & Finck, M. (1995). Optimal mutation probability for genetic algorithms. Mathematical and Computer Modelling, 21(8), 1-11. {#ref1}
