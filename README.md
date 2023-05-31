@@ -116,7 +116,7 @@ def Targetseq():
     return seq
 ```
 Codigo python
-~~~
+```
 # Trabajo de codigo 12/05/2023
 
 
@@ -168,10 +168,10 @@ def Targetseq():
         n += 1
     return seq
 # Ahora que creamos la secuencia, vamos a proceder a dividir la secuencia en pequeñas partes
-~~~
+```
 
 Lo que necesitaba es hacer que el programa pueda seguir pidiendo informacion hasta que de la correcta
-~~~
+```
 def Targetseq():
     print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
     while True:
@@ -204,10 +204,10 @@ Coloque el tamaño de su secuencia 1
 1.0
 Ya es entero 1.0
 1.0
-~~~
+```
 13/05/2023
 Ahora para que nos de numeros entre 0 y 1
-~~~
+```
 def tasa():
     while True:
         tasagen1 = float(input("Coloque la tasa de mutacion del gen 1: "))
@@ -233,10 +233,10 @@ Uy pa, como que no le atinaste pa, intentalo de nuevo
 Coloque la tasa de mutacion del gen 1:  1
 Excelente si es una tasa viable
 1.0
-~~~
+```
 
 De esta manera no funciona bien
-~~~
+```
 # Ahora si lo intentamos en conjunto
 def funcion():
     while True:
@@ -260,10 +260,10 @@ funcion()
 Coloque el tamaño de su secuencia 2
 Ya es entero 2.0
 2.0   
-~~~
+```
 Ahora toca continuar con generarlo en un solo while 
 Dio el mismo resultado
-~~~
+```
 # Ahora si lo intentamos en conjunto
 def funcion():
     while True:
@@ -286,9 +286,9 @@ funcion()
 Coloque el tamaño de su secuencia 19
 Ya es entero 19.0
 19.0
-~~~
+```
 Ahora solo se modifico el return, para ponerlo en el ultimo condicional
-~~~
+```
 # Ahora si lo intentamos en conjunto
 def funcion():
     while True:
@@ -316,10 +316,10 @@ Ya es entero 3.0
 Coloque la tasa de mutacion del gen 1:  0.5
 Excelente si es una tasa viable
 (3.0, 0.5)
-~~~
+```
 Ahora que junte todos los valores que se requieren, al terminar la funcion con return termina, y con yield, solo se puede si es iterable. 
 Por tanto se buscara que sea por el otro lado, que continue dentro del ultimo else
-~~~
+```
 def Targetseq():
     print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
     while True:
@@ -355,9 +355,9 @@ def Targetseq():
             print("Excelente, si es una tasa viable")
             yield x, gen1, tasagen1, gen2, tasagen2, gen3, tasagen3
     print("x: ",x, "gen1", gen1, "tasagen1", tasagen1, "gen2", gen2, "tasagen2", tasagen2, "gen3", gen3, "tasagen3", tasagen3)
-~~~
+```
 Ya que ahora podemos terminar una funcion y llamar a otra ahora solo queda condicionar mas, para el tamaño de la secuencia, asi como de otros factores
-~~~
+```
 def Targetseq():
     print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
     while True:
@@ -401,9 +401,9 @@ def TargetSigue(x, gen1, tasagen1, gen2, tasagen2, gen3, tasagen3):
 # Procedemos a que se guarden los valores y que actuen ambas funciones en una sola corrida    
 x, gen1, tasagen1, gen2, tasagen2, gen3, tasagen3 = Targetseq()
 TargetSigue(x, gen1, tasagen1, gen2, tasagen2, gen3, tasagen3)
-~~~
+```
 # Codigo original, no terminado pero avanzado
-~~~
+```
 # Trabajo de codigo 13/05/2023
 
 
@@ -489,10 +489,10 @@ def Targetseq():
         n += 1
     return seq
 # Ahora que creamos la secuencia, vamos a proceder a dividir la secuencia en pequeñas partes
-~~~
+```
 14/05/2023
 Hice una modificacion para tener salida
-~~~
+```
 # Ahora se quiere comprobar que tambien se va a regresar si no se agrega nada de informacion
 def Targetseq():
     print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
@@ -511,9 +511,9 @@ def Targetseq():
             else:
                 print("Ya es entero", x)
 Targetseq()
-~~~
+```
 Avance final de la logica, aunque falta corregir aun, sobre todo la parte de abajo
-~~~
+```
 def Targetseq():
     print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
     Datos = {}
@@ -608,13 +608,13 @@ def Targetseq():
                         print("Excelente, si es una tasa viable", tasagen)
                         n += 1
 # Para hacer menos codigo, se decidira crear un diccionario y por tanto ir guardando los datos
-~~~
+```
 
 #####################################################################################################################################
 
 # 21/05/2023
 Parte 1 finalizada del codigo
-~~~
+```
 # Modificación de código, Fecha: 21/05/2023
 def Targetseq():
     print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
@@ -713,9 +713,9 @@ def Targetseq():
                         break
 # Para hacer menos codigo, se decidira crear un diccionario y por tanto ir guardando los datos
 Targetseq()
-~~~
+```
 Ahora con este codigo nos va a ayudar mucho a la parte de diferenciar si es un digito, decimal o cadena, para aplicarla en el codigo
-~~~
+```
 x = input("pon algo ")
 if x.isdigit():
     print("Es un numero entero", x)
@@ -723,10 +723,10 @@ elif x.replace(".", "").isnumeric():
     print("es decimal ",x)
 else:
     print(x)
-~~~
+```
 
 Hasta este punto se busco la manera de que el programa siguiera funcionando una vez que se terminara de evaluar.
-~~~
+```
 # Ahora simulamos el inicio
 while True:
     x = input("pon algo ") #Pretendemos que coloque un valor
@@ -746,10 +746,10 @@ while True:
     print(x*2) # Aqui vemos como actua el numero fuera de los condionales
     break # Una vez acabamos, cerramos el bucle y continuamos a evaluar las variables guardadas
 print("numero final ", x) #Al finall si te imprime el valor entero x que pones 
-~~~
+```
 Solo falta aplicarlo en las demas partes del codigo
 
-~~~
+```
 # Modificación de código, Fecha: 21/05/2023
 def Targetseq():
     print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
@@ -860,10 +860,10 @@ Targetseq()
 
 
 #Ahora que ya tenemos el formato de todos los genes y nombres asi como de tasas, buscaremos imprimir todos esos datos y manipularlos
-~~~
+```
 Falta agregar depurar los datos cuando se agrega valores con un cero al inicio ej: 023,030 etc,
 Falta corregir para cuando meten valores repetidos, poner la condicion de que le falta corregir, porque ya agrego ese dato
-~~~
+```
 # Modificación de código, Fecha: 22/05/2023
 def Targetseq():
     print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
@@ -977,10 +977,10 @@ def Targetseq():
 
     return Datos
 Targetseq()
-~~~
+```
 Con esto sabemos que si hay algun valor que se guardo en el diccionario
 
-~~~
+```
 # Diccionario de ejemplo
 diccionario = {'clave1': 'valor1', 'clave2': 'valor2', 'clave3': 'valor3'}
 
@@ -995,11 +995,11 @@ for clave, valor in diccionario.items():
 else:
     print("El valor no está en el diccionario")
 
-~~~
+```
 
 AVANCE
 
-~~~
+```
 # Modificación de código, Fecha: 22/05/2023
 def Targetseq():
     print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
@@ -1120,12 +1120,12 @@ def Targetseq():
 
     return Datos
 Targetseq()
-~~~
+```
 
 
 Hasta este momento ya se logro hacer que al programa pudiese detectar el nombre repetido de la lista.
 Hasta es puto vamos a considerar que si se escribe gen1 es diferente que Gen1 o que GEn1 o que GEN1, seran las diferentes formas de que un mismo gen se puede detectar pero que a lo mejor se quiere probar algo etc
-~~~
+```
 # Modificación de código, Fecha: 26/05/2023
 def Targetseq():
     print("En este programa solo se va a colocar como muestra 3 genes, pero en un futuro se pensara para una cantidad necesaria de genes en lo que se pueda automatizar con bases de datos")
@@ -1242,10 +1242,10 @@ def Targetseq():
 
     return Datos
 Targetseq()
-~~~
+```
 Se le dio un ligero retoque a esta parte del codigo, para que se considerara todas las condicionales
 Pero ahora, solo falta corregir lo de la tasa de mutacion, se queda en bucle pidiendo de nuevo el valor sin salirse.
-~~~
+```
     n = 1
     while n >= 1 and n <=3:
         while True:
@@ -1262,9 +1262,9 @@ Pero ahora, solo falta corregir lo de la tasa de mutacion, se queda en bucle pid
             else:
                 print("A partir de aqui es que se agrega los valores y se procede a evaluar con las demas condicionales")
                 break  
-~~~
+```
 Ya corregimos la parte para que solo pida tres genes y tambien para resolver el bucle cuando se ponia nada ("")
-~~~
+```
 
         print(gen)
         while True:
@@ -1320,9 +1320,9 @@ Ya corregimos la parte para que solo pida tres genes y tambien para resolver el 
         continue
 
     return Datos  
-~~~
+```
 Ya se le agrego la generacion de nucletidos de manera aletoria, ademmas de pequeñas modificaciones
-~~~
+```
 # Modificación de código, Fecha: 27/05/2023
 import random
 def Targetseq():
@@ -1458,10 +1458,10 @@ def Targetseq():
     
     
 Targetseq()
-~~~
+```
 28/05/2023
 Pequeña prueba, para ver como se adaptan las claves de un diccionario
-~~~
+```
 import pandas as pd
 dicprueba = {'3': 1.0, 'tres': 0.0, '3¡0': 1.0, '93': 0.2}
 print(dicprueba.keys())
@@ -1482,9 +1482,9 @@ df = pd.DataFrame(data)
 
 # Imprimir el DataFrame
 print(df)
-~~~
+```
 Pequeño punto de partida para continuar
-~~~
+```
 # Modificación de código, Fecha: 28/05/2023
 import random
 import pandas as pd
@@ -1703,10 +1703,10 @@ def Targetseq():
     return Datos, seq, len(seq), df
 
 Targetseq()
-~~~
+```
 29/05/2023
 Ahora ya modificamos para agregar nuevos valores que contemplan las secuencias del promotor y del gen
-~~~
+```
 # Modificación de código, Fecha: 29/05/2023
 import random
 import pandas as pd
@@ -1942,7 +1942,7 @@ def Targetseq():
     return Datos, seq, len(seq), df
 
 Targetseq()
-~~~
+```
 30/05/2023
 Se modifico parte de la seleccion puntos de conservacion
 1. Pendientes, va ser almacenar los nucleotidos de dichas posiciones
