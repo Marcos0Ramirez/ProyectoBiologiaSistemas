@@ -1,6 +1,8 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/default.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+```scrollable python
+# Código de ejemplo
+def suma(a, b):
+    return a + b
+```
 
 # ProyectoBiologiaSistemas
 ***Hola, aqui pondre mi proyecto.***
